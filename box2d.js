@@ -257,12 +257,10 @@ var jgb2;
                 if(target == null) {
                     throw "invalid target";
                 }
+            } else if(entity instanceof jgb2.Entity) {
+                target = entity;
             } else {
-                if(entity instanceof jgb2.Entity) {
-                    target = entity;
-                } else {
-                    throw "invalid argument";
-                }
+                throw "invalid argument";
             }
             var contacts = target.body.GetContactList();
             var ret = [];
@@ -291,12 +289,10 @@ var jgb2;
                 if(targetA == null) {
                     throw "invalid target";
                 }
+            } else if(entityA instanceof jgb2.Entity) {
+                targetA = entityA;
             } else {
-                if(entityA instanceof jgb2.Entity) {
-                    targetA = entityA;
-                } else {
-                    throw "invalid argument";
-                }
+                throw "invalid argument";
             }
             var targetB = null;
             if(entityB instanceof E) {
@@ -304,12 +300,10 @@ var jgb2;
                 if(targetB == null) {
                     throw "invalid target";
                 }
+            } else if(entityB instanceof jgb2.Entity) {
+                targetB = entityB;
             } else {
-                if(entityB instanceof jgb2.Entity) {
-                    targetB = entityB;
-                } else {
-                    throw "invalid argument";
-                }
+                throw "invalid argument";
             }
             var contacts = this.getContacts(targetA);
             for(var i = 0; i < contacts.length; i++) {

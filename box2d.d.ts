@@ -25,7 +25,7 @@ module jgb2 {
         public endContact: Trigger;
         public postSolve: Trigger;
         public preSolve: Trigger;
-        constructor (game: Game, gravity?: CommonOffset, scale?: number);
+        constructor(game: Game, gravity?: CommonOffset, scale?: number);
         public enableDebug(context: CanvasRenderingContext2D): void;
         public disableDebug(): void;
         public render(): void;
@@ -55,7 +55,7 @@ module jgb2 {
     }
     class ContactListener extends Box2D.Dynamics.b2ContactListener {
         public world: World;
-        constructor (world: World);
+        constructor(world: World);
         public BeginContact(contact: Box2D.Dynamics.Contacts.b2Contact): void;
         public EndContact(contact: Box2D.Dynamics.Contacts.b2Contact): void;
         public PostSolve(contact: Box2D.Dynamics.Contacts.b2Contact, impulse: Box2D.Dynamics.b2ContactImpulse): void;
@@ -69,7 +69,7 @@ module jgb2 {
         public syncRotate: bool;
         public syncPoint: bool;
         public points: CommonOffset[];
-        constructor ();
+        constructor();
         public createBodyDef(type: number, pos?: CommonOffset, userData?: any): Box2D.Dynamics.b2BodyDef;
         public createFixtureDef(size: CommonSize): Box2D.Dynamics.b2FixtureDef;
         public clone(): AttachOption;
@@ -79,7 +79,7 @@ module jgb2 {
         public body: Box2D.Dynamics.b2Body;
         public fixture: Box2D.Dynamics.b2Fixture;
         public attachOption: AttachOption;
-        constructor (entity: E);
+        constructor(entity: E);
         public destroy(): void;
         public getMass(): number;
         public getCenter(): CommonOffset;

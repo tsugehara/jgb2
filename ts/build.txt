@@ -1,4 +1,5 @@
-../../jgame.js/src/js/jgame.d.ts
+../../jgame.js/lib/webaudio.d.ts
+../../jgame.js/lib/jgame.d.ts
 box2dweb-min.d.ts
 box2d.ts
 --out ../../jgame.js/src/js/modules/box2d.js
