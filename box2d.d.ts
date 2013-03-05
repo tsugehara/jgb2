@@ -39,8 +39,8 @@ module jgb2 {
         public updateBox2dObjects(): void;
         public updateJGObjects(): void;
         public checkDestroy(e: Entity, index?: number): bool;
-        public attach(entity: E, noAutoShape?: bool): Entity;
-        public attachStatic(entity: E, noAutoShape?: bool): Entity;
+        public attach(entity: E, option?: AttachOption): Entity;
+        public attachStatic(entity: E, option?: AttachOption): Entity;
         public detach(entity: E): bool;
         public _attach(entity: E, sd: number, option: AttachOption): Entity;
         public get(e: E): Entity;

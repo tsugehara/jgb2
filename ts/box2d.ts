@@ -65,6 +65,8 @@ module jgb2 {
 			this.game.render.handle(this, this.render);
 		}
 		disableDebug() {
+			if (!this.debug)
+				return;
 			this.game.render.remove(this, this.render);
 			delete this.debug;
 		}
@@ -210,14 +212,8 @@ module jgb2 {
 
 		//物理世界へお招きするためのメソッド群
 		//基本。物理法則を受けるオブジェクトにする
-		attach(entity:E, noAutoShape?:bool) {
-			var option = this.attachOption.clone();
-			if (! noAutoShape && entity instanceof Shape) {
-				if ((<Shape>entity).type == ShapeType.arc)
-					option.shapeType = ShapeType.arc;
-				else
-					option.shapeType = ShapeType.rect;
-			}
+		attach(entity:E, option?:jgb2.AttachOption) {
+			option = option ? option : this.attachOption.clone();
 			var boxEntity = this._attach(
 				entity,
 				Box2D.Dynamics.b2Body.b2_dynamicBody,
@@ -229,14 +225,8 @@ module jgb2 {
 		}
 		//物理法則は受けるけどなぜか全く動かないオブジェクトにする
 		//ちなみにこれ以外にb2_kinematicBodyあるけど、これはjgame.jsの普通のオブジェクトで代用可
-		attachStatic(entity:E, noAutoShape?:bool) {
-			var option = this.attachOption.clone();
-			if (! noAutoShape && entity instanceof Shape) {
-				if ((<Shape>entity).type == ShapeType.arc)
-					option.shapeType = ShapeType.arc;
-				else
-					option.shapeType = ShapeType.rect;
-			}
+		attachStatic(entity:E, option?:jgb2.AttachOption) {
+			option = option ? option : this.attachOption.clone();
 			var boxEntity = this._attach(
 				entity,
 				Box2D.Dynamics.b2Body.b2_staticBody,

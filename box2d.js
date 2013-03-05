@@ -38,6 +38,9 @@ var jgb2;
             this.game.render.handle(this, this.render);
         };
         World.prototype.disableDebug = function () {
+            if(!this.debug) {
+                return;
+            }
             this.game.render.remove(this, this.render);
             delete this.debug;
         };
@@ -148,28 +151,14 @@ var jgb2;
             }
             return false;
         };
-        World.prototype.attach = function (entity, noAutoShape) {
-            var option = this.attachOption.clone();
-            if(!noAutoShape && entity instanceof Shape) {
-                if((entity).type == ShapeType.arc) {
-                    option.shapeType = ShapeType.arc;
-                } else {
-                    option.shapeType = ShapeType.rect;
-                }
-            }
+        World.prototype.attach = function (entity, option) {
+            option = option ? option : this.attachOption.clone();
             var boxEntity = this._attach(entity, Box2D.Dynamics.b2Body.b2_dynamicBody, option);
             this.entities.push(boxEntity);
             return boxEntity;
         };
-        World.prototype.attachStatic = function (entity, noAutoShape) {
-            var option = this.attachOption.clone();
-            if(!noAutoShape && entity instanceof Shape) {
-                if((entity).type == ShapeType.arc) {
-                    option.shapeType = ShapeType.arc;
-                } else {
-                    option.shapeType = ShapeType.rect;
-                }
-            }
+        World.prototype.attachStatic = function (entity, option) {
+            option = option ? option : this.attachOption.clone();
             var boxEntity = this._attach(entity, Box2D.Dynamics.b2Body.b2_staticBody, option);
             this.entities.push(boxEntity);
             return boxEntity;
