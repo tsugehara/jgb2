@@ -11,8 +11,8 @@ module jgb2 {
 	}
 	export class World {
 		world:Box2D.Dynamics.b2World;
-		game:Game;
-		gravity: CommonOffset;
+		game:jg.Game;
+		gravity: jg.CommonOffset;
 		velocityIteration:number;
 		positionIteration:number;
 		started: bool;
@@ -22,13 +22,13 @@ module jgb2 {
 		radian: number;
 		attachOption: AttachOption;
 
-		beginContact:Trigger; //ContactEvent
-		endContact:Trigger;   //ContactEvent
-		postSolve:Trigger;    //ContactPostSolveEvent
-		preSolve:Trigger;     //ContactPreSolveEvent
+		beginContact:jg.Trigger; //ContactEvent
+		endContact:jg.Trigger;   //ContactEvent
+		postSolve:jg.Trigger;    //ContactPostSolveEvent
+		preSolve:jg.Trigger;     //ContactPreSolveEvent
 
 
-		constructor(game:Game, gravity?:CommonOffset, scale?:number) {
+		constructor(game:jg.Game, gravity?:jg.CommonOffset, scale?:number) {
 			this.game = game;
 			this.gravity = gravity ? gravity : {x: 0, y:10};
 			this.scale = scale ? scale : 30;
@@ -61,7 +61,7 @@ module jgb2 {
 			this.world.SetDebugDraw(debugDraw);
 			this.debug = true;
 			if (! this.game.render)
-				this.game.render = new Trigger();
+				this.game.render = new jg.Trigger();
 			this.game.render.handle(this, this.render);
 		}
 		disableDebug() {
@@ -76,14 +76,14 @@ module jgb2 {
 		}
 
 		//重力関連
-		getGravity():CommonOffset {
+		getGravity():jg.CommonOffset {
 			var ret = this.world.GetGravity();
 			return {
 				x: ret.x,
 				y: ret.y
 			}
 		}
-		setGravity(g:CommonOffset) {
+		setGravity(g:jg.CommonOffset) {
 			this.world.SetGravity(
 				new Box2D.Common.Math.b2Vec2(g.x, g.y)
 			);
@@ -212,7 +212,7 @@ module jgb2 {
 
 		//物理世界へお招きするためのメソッド群
 		//基本。物理法則を受けるオブジェクトにする
-		attach(entity:E, option?:jgb2.AttachOption) {
+		attach(entity:jg.E, option?:jgb2.AttachOption) {
 			option = option ? option : this.attachOption.clone();
 			var boxEntity = this._attach(
 				entity,
@@ -225,7 +225,7 @@ module jgb2 {
 		}
 		//物理法則は受けるけどなぜか全く動かないオブジェクトにする
 		//ちなみにこれ以外にb2_kinematicBodyあるけど、これはjgame.jsの普通のオブジェクトで代用可
-		attachStatic(entity:E, option?:jgb2.AttachOption) {
+		attachStatic(entity:jg.E, option?:jgb2.AttachOption) {
 			option = option ? option : this.attachOption.clone();
 			var boxEntity = this._attach(
 				entity,
@@ -237,7 +237,7 @@ module jgb2 {
 			return boxEntity;
 		}
 		//物理世界から解放
-		detach(entity:E) {
+		detach(entity:jg.E) {
 			for (var i=0; i<this.entities.length; i++) {
 				var e = this.entities[i];
 				if (e.entity == entity) {
@@ -250,7 +250,7 @@ module jgb2 {
 			return false;
 		}
 		//便利関数
-		_attach(entity:E, sd:number, option:AttachOption): jgb2.Entity {
+		_attach(entity:jg.E, sd:number, option:AttachOption): jgb2.Entity {
 			var boxEntity = new jgb2.Entity(entity);
 
 			var pos = this.getBoxPosition(entity);
@@ -266,7 +266,7 @@ module jgb2 {
 		}
 
 		//EからEntity取得
-		get(e:E) {
+		get(e:jg.E) {
 			for (var i=0; i<this.entities.length; i++) {
 				if (e == this.entities[i].entity)
 					return this.entities[i];
@@ -275,8 +275,8 @@ module jgb2 {
 		}
 
 		//jgame.js側の座標系からbox2d系の座標系を得る
-		getBoxPosition(p:CommonOffset):CommonOffset {
-			var area:CommonArea = <CommonArea>p;
+		getBoxPosition(p:jg.CommonOffset):jg.CommonOffset {
+			var area:jg.CommonArea = <jg.CommonArea>p;
 			if (area.width && area.height) {
 				return {
 					x: (area.x + area.width / 2) / this.scale,
@@ -289,13 +289,13 @@ module jgb2 {
 				}
 			}
 		}
-		getBoxSize(size:CommonSize):CommonSize {
+		getBoxSize(size:jg.CommonSize):jg.CommonSize {
 			return {
 				width: size.width / this.scale / 2,
 				height: size.height / this.scale / 2
 			}
 		}
-		getBoxArea(area:CommonArea):CommonArea {
+		getBoxArea(area:jg.CommonArea):jg.CommonArea {
 			return {
 				x: (area.x + area.width / 2) / this.scale,
 				y: (area.y + area.height / 2) / this.scale,
@@ -305,7 +305,7 @@ module jgb2 {
 		}
 
 		//box2d系の座標系からjgame.js側の座標系を得る
-		getJGPosition(entity:jgb2.Entity):CommonOffset {
+		getJGPosition(entity:jgb2.Entity):jg.CommonOffset {
 			var pos = entity.getPosition();
 			return {
 				x: pos.x * this.scale - entity.entity.width / 2,
@@ -322,7 +322,7 @@ module jgb2 {
 
 		//joint系サポートしたいけどようわからん
 		//とりあえず一番基本的っぽいb2DistanceJointDefだけサポートしてみる
-		joint(e1:jgb2.Entity, e2:jgb2.Entity, anchor1:CommonOffset, anchor2:CommonOffset) {
+		joint(e1:jgb2.Entity, e2:jgb2.Entity, anchor1:jg.CommonOffset, anchor2:jg.CommonOffset) {
 			var def = new Box2D.Dynamics.Joints.b2DistanceJointDef();
 			def.Initialize(
 				e1.body,
@@ -340,7 +340,7 @@ module jgb2 {
 		//entityはEまたはjgb2.Entityのいずれかで指定可
 		getContacts(entity:any) {
 			var target:Entity = null;
-			if (entity instanceof E) {
+			if (entity instanceof jg.E) {
 				target = this.get(entity);
 				if (target == null)
 					throw "invalid target";
@@ -372,7 +372,7 @@ module jgb2 {
 		//entityAとBは両方ともEまたはjgb2.Entityのいずれかで指定可
 		hasContact(entityA:any, entityB:any) {
 			var targetA = null;
-			if (entityA instanceof E) {
+			if (entityA instanceof jg.E) {
 				targetA = this.get(entityA);
 				if (targetA == null)
 					throw "invalid target";
@@ -383,7 +383,7 @@ module jgb2 {
 			}
 
 			var targetB = null;
-			if (entityB instanceof E) {
+			if (entityB instanceof jg.E) {
 				targetB = this.get(entityB);
 				if (targetB == null)
 					throw "invalid target";
@@ -452,21 +452,21 @@ module jgb2 {
 		density:number;	//密度
 		friction:number;	//摩擦
 		restitution:number;	//反発
-		shapeType:ShapeType;
+		shapeType:jg.ShapeType;
 		syncRotate:bool;
 		syncPoint:bool;
-		points:CommonOffset[];
+		points:jg.CommonOffset[];
 
 		constructor() {
 			this.density = 1.0;
 			this.friction = 0.5;
 			this.restitution = 0.2;
-			this.shapeType = ShapeType.rect;
+			this.shapeType = jg.ShapeType.Rect;
 			this.syncRotate = true;
 			this.syncPoint = true;
 		}
 
-		createBodyDef(type:number, pos?:CommonOffset, userData?:any):Box2D.Dynamics.b2BodyDef {
+		createBodyDef(type:number, pos?:jg.CommonOffset, userData?:any):Box2D.Dynamics.b2BodyDef {
 			var bodyDef = new Box2D.Dynamics.b2BodyDef();
 			bodyDef.type = type;
 			if (pos) {
@@ -482,7 +482,7 @@ module jgb2 {
 			return bodyDef;
 		}
 
-		createFixtureDef(size:CommonSize):Box2D.Dynamics.b2FixtureDef {
+		createFixtureDef(size:jg.CommonSize):Box2D.Dynamics.b2FixtureDef {
 			var fixDef = new Box2D.Dynamics.b2FixtureDef();
 			fixDef.density = this.density;
 			fixDef.friction = this.friction;
@@ -501,7 +501,7 @@ module jgb2 {
 					vertices.length
 				);
 			} else {
-				if (this.shapeType == ShapeType.arc) {
+				if (this.shapeType == jg.ShapeType.Arc) {
 					fixDef.shape = new Box2D.Collision.Shapes.b2CircleShape(
 						size.width
 					);
@@ -526,12 +526,12 @@ module jgb2 {
 	}
 
 	export class Entity {
-		entity:E;
+		entity:jg.E;
 		body:Box2D.Dynamics.b2Body;
 		fixture:Box2D.Dynamics.b2Fixture;
 		attachOption:AttachOption;
 
-		constructor(entity:E) {
+		constructor(entity:jg.E) {
 			this.entity = entity;
 		}
 
@@ -546,14 +546,14 @@ module jgb2 {
 		}
 
 		//中心点関係
-		getCenter():CommonOffset {
+		getCenter():jg.CommonOffset {
 			var pos = this.body.GetLocalCenter();
 			return {
 				x: pos.x,
 				y: pos.y
 			}
 		}
-		setCenter(pos:CommonOffset) {
+		setCenter(pos:jg.CommonOffset) {
 			var mass = this.body.GetMass();
 			var newMassData = new Box2D.Collision.Shapes.b2MassData();
 			newMassData.mass = mass;
@@ -567,19 +567,19 @@ module jgb2 {
 		}
 
 		//場所。起点がjgame.jsとは違う
-		getPosition():CommonOffset {
+		getPosition():jg.CommonOffset {
 			var pos = this.body.GetPosition();
 			return {
 				x: pos.x,
 				y: pos.y
 			}
 		}
-		setPosition(pos:CommonOffset) {
+		setPosition(pos:jg.CommonOffset) {
 			this.body.SetPosition(
 				new Box2D.Common.Math.b2Vec2(pos.x, pos.y)
 			);
 		}
-		addPosition(pos:CommonOffset) {
+		addPosition(pos:jg.CommonOffset) {
 			var orgPos = this.body.GetPosition();
 			this.body.SetPosition(
 				new Box2D.Common.Math.b2Vec2(orgPos.x+pos.x, orgPos.y+pos.y)
@@ -613,16 +613,16 @@ module jgb2 {
 		}
 
 		//移動力関連
-		getVelocity():CommonOffset {
+		getVelocity():jg.CommonOffset {
 			return this.body.GetLinearVelocity();
 		}
-		setVelocity(p:CommonOffset) {
+		setVelocity(p:jg.CommonOffset) {
 			this.body.SetLinearVelocity(
 				new Box2D.Common.Math.b2Vec2(p.x, p.y)
 			);
 			this.setAwake(true);
 		}
-		addVelocity(p:CommonOffset) {
+		addVelocity(p:jg.CommonOffset) {
 			var p2 = this.getVelocity();
 			p2.x += p.x;
 			p2.y += p.y;
@@ -652,7 +652,7 @@ module jgb2 {
 
 		//瞬間的な力を加える。らしい。
 		//baseが設定されていると、多分その方向からの力として認識される
-		impulse(impuls:CommonOffset, base?:CommonOffset) {
+		impulse(impuls:jg.CommonOffset, base?:jg.CommonOffset) {
 			this.body.ApplyImpulse(
 				new Box2D.Common.Math.b2Vec2(impuls.x, impuls.y),
 				base ? new Box2D.Common.Math.b2Vec2(base.x, base.y) : this.body.GetPosition()
@@ -662,7 +662,7 @@ module jgb2 {
 		//継続的な力を与える。継続的な力という割にすぐになくなるけど。
 		//感覚的に、impuls > velocity > forceの順に力が強くなる印象
 		//baseが設定されていると、多分その方向からの力として認識される
-		force(force:CommonOffset, base?:CommonOffset) {
+		force(force:jg.CommonOffset, base?:jg.CommonOffset) {
 			this.body.ApplyForce(
 				new Box2D.Common.Math.b2Vec2(force.x, force.y),
 				base ? new Box2D.Common.Math.b2Vec2(base.x, base.y) : this.body.GetPosition()

@@ -33,7 +33,7 @@ var jgb2;
             this.world.SetDebugDraw(debugDraw);
             this.debug = true;
             if(!this.game.render) {
-                this.game.render = new Trigger();
+                this.game.render = new jg.Trigger();
             }
             this.game.render.handle(this, this.render);
         };
@@ -241,7 +241,7 @@ var jgb2;
         };
         World.prototype.getContacts = function (entity) {
             var target = null;
-            if(entity instanceof E) {
+            if(entity instanceof jg.E) {
                 target = this.get(entity);
                 if(target == null) {
                     throw "invalid target";
@@ -273,7 +273,7 @@ var jgb2;
         };
         World.prototype.hasContact = function (entityA, entityB) {
             var targetA = null;
-            if(entityA instanceof E) {
+            if(entityA instanceof jg.E) {
                 targetA = this.get(entityA);
                 if(targetA == null) {
                     throw "invalid target";
@@ -284,7 +284,7 @@ var jgb2;
                 throw "invalid argument";
             }
             var targetB = null;
-            if(entityB instanceof E) {
+            if(entityB instanceof jg.E) {
                 targetB = this.get(entityB);
                 if(targetB == null) {
                     throw "invalid target";
@@ -353,7 +353,7 @@ var jgb2;
             this.density = 1.0;
             this.friction = 0.5;
             this.restitution = 0.2;
-            this.shapeType = ShapeType.rect;
+            this.shapeType = jg.ShapeType.Rect;
             this.syncRotate = true;
             this.syncPoint = true;
         }
@@ -385,7 +385,7 @@ var jgb2;
                 }
                 (fixDef.shape).SetAsArray(vertices, vertices.length);
             } else {
-                if(this.shapeType == ShapeType.arc) {
+                if(this.shapeType == jg.ShapeType.Arc) {
                     fixDef.shape = new Box2D.Collision.Shapes.b2CircleShape(size.width);
                 } else {
                     fixDef.shape = new Box2D.Collision.Shapes.b2PolygonShape();
