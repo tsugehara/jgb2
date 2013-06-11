@@ -1,4 +1,4 @@
-module jgb2 {
+declare module jgb2 {
     interface ContactEvent {
         world: World;
         contact: Box2D.Dynamics.Contacts.b2Contact;
@@ -15,9 +15,9 @@ module jgb2 {
         public gravity: jg.CommonOffset;
         public velocityIteration: number;
         public positionIteration: number;
-        public started: bool;
+        public started: boolean;
         public entities: Entity[];
-        public debug: bool;
+        public debug: boolean;
         public scale: number;
         public radian: number;
         public attachOption: AttachOption;
@@ -33,15 +33,15 @@ module jgb2 {
         public setGravity(g: jg.CommonOffset): void;
         public enableContactEvent(): void;
         public disableContactEvent(): void;
-        public start(first?: bool): void;
+        public start(first?: boolean): void;
         public stop(): void;
         public update(t: number): void;
         public updateBox2dObjects(): void;
         public updateJGObjects(): void;
-        public checkDestroy(e: Entity, index?: number): bool;
+        public checkDestroy(e: Entity, index?: number): boolean;
         public attach(entity: jg.E, option?: AttachOption): Entity;
         public attachStatic(entity: jg.E, option?: AttachOption): Entity;
-        public detach(entity: jg.E): bool;
+        public detach(entity: jg.E): boolean;
         public _attach(entity: jg.E, sd: number, option: AttachOption): Entity;
         public get(e: jg.E): Entity;
         public getBoxPosition(p: jg.CommonOffset): jg.CommonOffset;
@@ -51,7 +51,7 @@ module jgb2 {
         public awakeAll(): void;
         public joint(e1: Entity, e2: Entity, anchor1: jg.CommonOffset, anchor2: jg.CommonOffset): Box2D.Dynamics.Joints.b2Joint;
         public getContacts(entity: any): any[];
-        public hasContact(entityA: any, entityB: any): bool;
+        public hasContact(entityA: any, entityB: any): boolean;
     }
     class ContactListener extends Box2D.Dynamics.b2ContactListener {
         public world: World;
@@ -66,8 +66,8 @@ module jgb2 {
         public friction: number;
         public restitution: number;
         public shapeType: jg.ShapeType;
-        public syncRotate: bool;
-        public syncPoint: bool;
+        public syncRotate: boolean;
+        public syncPoint: boolean;
         public points: jg.CommonOffset[];
         constructor();
         public createBodyDef(type: number, pos?: jg.CommonOffset, userData?: any): Box2D.Dynamics.b2BodyDef;
@@ -90,10 +90,10 @@ module jgb2 {
         public addPosition(pos: jg.CommonOffset): void;
         public getAngle(): number;
         public setAngle(angle: number): void;
-        public isBullet(): bool;
-        public setBullet(flag: bool): void;
-        public isAwake(): bool;
-        public setAwake(awake: bool): void;
+        public isBullet(): boolean;
+        public setBullet(flag: boolean): void;
+        public isAwake(): boolean;
+        public setAwake(awake: boolean): void;
         public getVelocity(): jg.CommonOffset;
         public setVelocity(p: jg.CommonOffset): void;
         public addVelocity(p: jg.CommonOffset): void;
@@ -103,7 +103,7 @@ module jgb2 {
         public torque(torque: number): void;
         public impulse(impuls: jg.CommonOffset, base?: jg.CommonOffset): void;
         public force(force: jg.CommonOffset, base?: jg.CommonOffset): void;
-        public isFixedRotation(): bool;
-        public setFixedRotation(isFix: bool): void;
+        public isFixedRotation(): boolean;
+        public setFixedRotation(isFix: boolean): void;
     }
 }

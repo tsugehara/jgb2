@@ -31,7 +31,7 @@ import b2Contacts = Box2D.Dynamics.Contacts;
 import b2Controllers = Box2D.Dynamics.Controllers;
 import b2Joints = Box2D.Dynamics.Joints;
 
-module Box2D.Common {
+declare module Box2D.Common {
 
 	/**
 	* Color for debug drawing.  Each value has the range [0, 1].
@@ -225,7 +225,7 @@ module Box2D.Common {
 	}
 }
 
-module Box2D.Common.Math {
+declare module Box2D.Common.Math {
 
 	/**
 	* A 2-by-2 matrix.  Stored in column-major order.
@@ -1022,7 +1022,7 @@ module Box2D.Common.Math {
 	}
 }
 
-module Box2D.Collision {
+declare module Box2D.Collision {
 
 	/**
 	* Axis aligned bounding box.
@@ -1879,7 +1879,7 @@ module Box2D.Collision {
 	}
 }
 
-module Box2D.Collision.Shapes {
+declare module Box2D.Collision.Shapes {
 
 	/**
 	* A circle shape.
@@ -2460,7 +2460,7 @@ module Box2D.Collision.Shapes {
 	}
 }
 
-module Box2D.Dynamics {
+declare module Box2D.Dynamics {
 
 	/**
 	* A rigid body.
@@ -3676,7 +3676,7 @@ module Box2D.Dynamics {
 	}
 }
 
-module Box2D.Dynamics.Contacts {
+declare module Box2D.Dynamics.Contacts {
 
 	/**
 	* The class manages contact between two shapes. A contact exists for each overlapping AABB in the broad-phase (except if filtered). Therefore a contact object may exist that has no contact points.
@@ -3831,7 +3831,7 @@ module Box2D.Dynamics.Contacts {
 
 }
 
-module Box2D.Dynamics.Controllers {
+declare module Box2D.Dynamics.Controllers {
 
 	/**
 	* Calculates buoyancy forces for fluids in the form of a half plane.
@@ -4078,7 +4078,7 @@ module Box2D.Dynamics.Controllers {
 	}
 }
 
-module Box2D.Dynamics.Joints {
+declare module Box2D.Dynamics.Joints {
 
 	/**
 	* A distance joint constrains two points on two bodies to remain at a fixed distance from each other. You can view this as a massless, rigid rod.
