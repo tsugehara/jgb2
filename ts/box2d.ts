@@ -15,9 +15,9 @@ module jgb2 {
 		gravity: jg.CommonOffset;
 		velocityIteration:number;
 		positionIteration:number;
-		started: bool;
+		started: boolean;
 		entities:jgb2.Entity[];
-		debug:bool;
+		debug:boolean;
 		scale: number;
 		radian: number;
 		attachOption: AttachOption;
@@ -109,7 +109,7 @@ module jgb2 {
 		}
 
 		//開始と終了
-		start(first?:bool) {
+		start(first?:boolean) {
 			if (this.started)
 				return;
 			this.started = true;
@@ -453,8 +453,8 @@ module jgb2 {
 		friction:number;	//摩擦
 		restitution:number;	//反発
 		shapeType:jg.ShapeType;
-		syncRotate:bool;
-		syncPoint:bool;
+		syncRotate:boolean;
+		syncPoint:boolean;
 		points:jg.CommonOffset[];
 
 		constructor() {
@@ -595,20 +595,20 @@ module jgb2 {
 		}
 
 		//弾丸かどうかを取得
-		isBullet():bool {
+		isBullet():boolean {
 			return this.body.IsBullet();
 		}
 		//trueだと弾丸にする？？やってみたけどよくわからん
-		setBullet(flag:bool) {
+		setBullet(flag:boolean) {
 			this.body.SetBullet(flag);
 		}
 
 		//停止してるかどうか取得
-		isAwake():bool {
+		isAwake():boolean {
 			return this.body.IsAwake();
 		}
 		//trueで計算再開、falseで計算停止
-		setAwake(awake:bool) {
+		setAwake(awake:boolean) {
 			this.body.SetAwake(awake);
 		}
 
@@ -671,10 +671,10 @@ module jgb2 {
 
 		//固定回転関係。指定すると永続的に回り続ける
 		//これだけじゃ回らないので、どのくらい回っているかをrolling系で指定する事
-		isFixedRotation():bool {
+		isFixedRotation():boolean {
 			return this.body.IsFixedRotation();
 		}
-		setFixedRotation(isFix:bool) {
+		setFixedRotation(isFix:boolean) {
 			this.body.SetFixedRotation(isFix);
 		}
 	}

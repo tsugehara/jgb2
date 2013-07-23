@@ -84,7 +84,7 @@ declare module Box2D.Common {
 		/**
 		* b2Assert is used internally to handle assertions. By default, calls are commented out to save performance, so they serve more as documentation than anything else.
 		**/
-		public static b2Assert(a: bool): void;
+		public static b2Assert(a: boolean): void;
 
 		/**
 		* Friction mixing law. Feel free to customize this.
@@ -431,7 +431,7 @@ declare module Box2D.Common.Math {
 		* @x Number to check for validity.
 		* @return True if x is valid, otherwise false.
 		**/
-		public static IsValid(x: number): bool;
+		public static IsValid(x: number): boolean;
 
 		/**
 		* Dot product of two vector 2s.
@@ -665,7 +665,7 @@ declare module Box2D.Common.Math {
 		* @x Number to check if it is a power of 2.
 		* @return True if x is a power of 2, otherwise false.
 		**/
-		public static IsPowerOfTwo(x: number): bool;
+		public static IsPowerOfTwo(x: number): boolean;
 
 		/**
 		* Global instance of a zero'ed vector.  Use as read-only.
@@ -851,7 +851,7 @@ declare module Box2D.Common.Math {
 		* True if the vector 2 is valid, otherwise false.  A valid vector has finite values.
 		* @return True if the vector 2 is valid, otherwise false.
 		**/
-		public IsValid(): bool;
+		public IsValid(): boolean;
 
 		/**
 		* Calculates the length of the vector 2.
@@ -1059,7 +1059,7 @@ declare module Box2D.Collision {
 		* @aabb AABB to see if it is contained.
 		* @return True if aabb is contained, otherwise false.
 		**/
-		public Contains(aabb: b2AABB): bool;
+		public Contains(aabb: b2AABB): boolean;
 
 		/**
 		* Gets the center of the AABB.
@@ -1077,7 +1077,7 @@ declare module Box2D.Collision {
 		* Verify that the bounds are sorted.
 		* @return True if the bounds are sorted, otherwise false.
 		**/
-		public IsValid(): bool;
+		public IsValid(): boolean;
 
 		/**
 		* Perform a precise raycast against this AABB.
@@ -1085,14 +1085,14 @@ declare module Box2D.Collision {
 		* @input Ray cast input values.
 		* @return True if the ray cast hits this AABB, otherwise false.
 		**/
-		public RayCast(output: b2RayCastOutput, input: b2RayCastInput): bool;
+		public RayCast(output: b2RayCastOutput, input: b2RayCastInput): boolean;
 
 		/**
 		* Tests if another AABB overlaps this AABB.
 		* @other Other AABB to test for overlap.
 		* @return True if other overlaps this AABB, otherwise false.
 		**/
-		public TestOverlap(other: b2AABB): bool;
+		public TestOverlap(other: b2AABB): boolean;
 	}
 
 	/**
@@ -1207,7 +1207,7 @@ declare module Box2D.Collision {
 		/**
 		* Use shape radii in computation?
 		**/
-		public useRadii: bool;
+		public useRadii: boolean;
 	}
 
 	/**
@@ -1334,7 +1334,7 @@ declare module Box2D.Collision {
 		* @aabb Swept AABB.
 		* @displacement Extra AABB displacement.
 		**/
-		public MoveProxy(proxy: b2DynamicTreeNode, aabb: b2AABB, displacement: b2Math.b2Vec2): bool;
+		public MoveProxy(proxy: b2DynamicTreeNode, aabb: b2AABB, displacement: b2Math.b2Vec2): boolean;
 
 		/**
 		* Query an AABB for overlapping proxies. The callback is called for each proxy that overlaps the supplied AABB. The callback should match function signature fuction callback(proxy:b2DynamicTreeNode):Boolean and should return false to trigger premature termination.
@@ -1342,7 +1342,7 @@ declare module Box2D.Collision {
 		*	@proxy Proxy overlapping the supplied AABB.
 		* @aabb Proxies are query for overlap on this AABB.
 		**/
-		public Query(callback: (proxy: b2DynamicTreeNode) => bool, aabb: b2AABB): void;
+		public Query(callback: (proxy: b2DynamicTreeNode) => boolean, aabb: b2AABB): void;
 
 		/**
 		* Ray-cast against the proxies in the tree. This relies on the callback to perform a exact ray-cast in the case were the proxy contains a shape. The callback also performs the any collision filtering. This has performance roughly equal to k log(n), where k is the number of collisions and n is the number of proxies in the tree.
@@ -1417,7 +1417,7 @@ declare module Box2D.Collision {
 		*	@proxy Proxy overlapping the supplied AABB.
 		* @aabb Proxies are query for overlap on this AABB.
 		**/
-		public Query(callback: (proxy: b2DynamicTreeNode) => bool, aabb: b2AABB): void;
+		public Query(callback: (proxy: b2DynamicTreeNode) => boolean, aabb: b2AABB): void;
 
 		/**
 		* Ray-cast against the proxies in the tree. This relies on the callback to perform a exact ray-cast in the case were the proxy contains a shape. The callback also performs the any collision filtering. This has performance roughly equal to k log(n), where k is the number of collisions and n is the number of proxies in the tree.
@@ -1441,7 +1441,7 @@ declare module Box2D.Collision {
 		* @proxyB Second proxy to test.
 		* @return True if the proxyA and proxyB overlap with Fat AABBs, otherwise false.
 		**/
-		public TestOverlap(proxyA: b2DynamicTreeNode, proxyB: b2DynamicTreeNode): bool;
+		public TestOverlap(proxyA: b2DynamicTreeNode, proxyB: b2DynamicTreeNode): boolean;
 
 		/**
 		* Update the pairs. This results in pair callbacks. This can only add pairs.
@@ -1686,7 +1686,7 @@ declare module Box2D.Collision {
 			lambda: number[],
 			normal: b2Math.b2Vec2,
 			segment: b2Segment,
-			maxLambda: number): bool;
+			maxLambda: number): boolean;
 	}
 
 	/**
@@ -1859,7 +1859,7 @@ declare module Box2D.Collision {
 		*	@proxy Proxy overlapping the supplied AABB.
 		* @aabb Proxies are query for overlap on this AABB.
 		**/
-		Query(callback: (proxy: b2DynamicTreeNode) => bool, aabb: b2AABB): void;
+		Query(callback: (proxy: b2DynamicTreeNode) => boolean, aabb: b2AABB): void;
 
 		/**
 		* Ray-cast against the proxies in the tree. This relies on the callback to perform a exact ray-cast in the case were the proxy contains a shape. The callback also performs the any collision filtering. This has performance roughly equal to k log(n), where k is the number of collisions and n is the number of proxies in the tree.
@@ -1945,7 +1945,7 @@ declare module Box2D.Collision.Shapes {
 		public RayCast(
 			output: b2RayCastOutput,
 			input: b2RayCastInput,
-			transform: b2Math.b2Transform): bool;
+			transform: b2Math.b2Transform): boolean;
 
 		/**
 		* Set the circle shape values from another shape.
@@ -1971,7 +1971,7 @@ declare module Box2D.Collision.Shapes {
 		* @p Point to test against, in world coordinates.
 		* @return True if the point is in this shape, otherwise false.
 		**/
-		public TestPoint(xf: b2Math.b2Transform, p: b2Math.b2Vec2): bool;
+		public TestPoint(xf: b2Math.b2Transform, p: b2Math.b2Vec2): boolean;
 	}
 
 	/**
@@ -1982,7 +1982,7 @@ declare module Box2D.Collision.Shapes {
 		/**
 		* Whether to create an extra edge between the first and last vertices.
 		**/
-		public isALoop: bool;
+		public isALoop: boolean;
 
 		/**
 		* The number of vertices in the chain.
@@ -2094,13 +2094,13 @@ declare module Box2D.Collision.Shapes {
 		* Determines if the first corner of this edge bends towards the solid side.
 		* @return True if convex, otherwise false.
 		**/
-		public Corner1IsConvex(): bool;
+		public Corner1IsConvex(): boolean;
 
 		/**
 		* Determines if the second corner of this edge bends towards the solid side.
 		* @return True if convex, otherwise false.
 		**/
-		public Corner2IsConvex(): bool;
+		public Corner2IsConvex(): boolean;
 
 		/**
 		* Get the first vertex and apply the supplied transform.
@@ -2139,7 +2139,7 @@ declare module Box2D.Collision.Shapes {
 		public RayCast(
 			output: b2RayCastOutput,
 			input: b2RayCastInput,
-			transform: b2Math.b2Transform): bool;
+			transform: b2Math.b2Transform): boolean;
 
 		/**
 		* Test a point for containment in this shape. This only works for convex shapes.
@@ -2147,7 +2147,7 @@ declare module Box2D.Collision.Shapes {
 		* @p Point to test against, in world coordinates.
 		* @return True if the point is in this shape, otherwise false.
 		**/
-		public TestPoint(xf: b2Math.b2Transform, p: b2Math.b2Vec2): bool;
+		public TestPoint(xf: b2Math.b2Transform, p: b2Math.b2Vec2): boolean;
 	}
 
 	/**
@@ -2290,7 +2290,7 @@ declare module Box2D.Collision.Shapes {
 		**/
 		public RayCast(output: b2RayCastOutput,
 			input: b2RayCastInput,
-			transform: b2Math.b2Transform): bool;
+			transform: b2Math.b2Transform): boolean;
 
 		/**
 		* Set the shape values from another shape.
@@ -2346,7 +2346,7 @@ declare module Box2D.Collision.Shapes {
 		* @p Point to test against, in world coordinates.
 		* @return True if the point is in this shape, otherwise false.
 		**/
-		public TestPoint(xf: b2Math.b2Transform, p: b2Math.b2Vec2): bool;
+		public TestPoint(xf: b2Math.b2Transform, p: b2Math.b2Vec2): boolean;
 	}
 
 	/**
@@ -2428,7 +2428,7 @@ declare module Box2D.Collision.Shapes {
 		public RayCast(
 			output: b2RayCastOutput,
 			input: b2RayCastInput,
-			transform: b2Math.b2Transform): bool;
+			transform: b2Math.b2Transform): boolean;
 
 		/**
 		* Set the shape values from another shape.
@@ -2448,7 +2448,7 @@ declare module Box2D.Collision.Shapes {
 			shape1: b2Shape,
 			transform1: b2Math.b2Transform,
 			shape2: b2Shape,
-			transform2: b2Math.b2Transform): bool;
+			transform2: b2Math.b2Transform): boolean;
 
 		/**
 		* Test a point for containment in this shape. This only works for convex shapes.
@@ -2456,7 +2456,7 @@ declare module Box2D.Collision.Shapes {
 		* @p Point to test against, in world coordinates.
 		* @return True if the point is in this shape, otherwise false.
 		**/
-		public TestPoint(xf: b2Math.b2Transform, p: b2Math.b2Vec2): bool;
+		public TestPoint(xf: b2Math.b2Transform, p: b2Math.b2Vec2): boolean;
 	}
 }
 
@@ -2699,31 +2699,31 @@ declare module Box2D.Dynamics {
 		* Get the active state of the body.
 		* @return True if the body is active, otherwise false.
 		**/
-		public IsActive(): bool;
+		public IsActive(): boolean;
 
 		/**
 		* Get the sleeping state of this body.
 		* @return True if the body is awake, otherwise false.
 		**/
-		public IsAwake(): bool;
+		public IsAwake(): boolean;
 
 		/**
 		* Is the body treated like a bullet for continuous collision detection?
 		* @return True if the body is treated like a bullet, otherwise false.
 		**/
-		public IsBullet(): bool;
+		public IsBullet(): boolean;
 
 		/**
 		* Does this body have fixed rotation?
 		* @return True for fixed, otherwise false.
 		**/
-		public IsFixedRotation(): bool;
+		public IsFixedRotation(): boolean;
 
 		/**
 		* Is this body allowed to sleep?
 		* @return True if the body can sleep, otherwise false.
 		**/
-		public IsSleepingAllowed(): bool;
+		public IsSleepingAllowed(): boolean;
 
 		/**
 		* Merges another body into this. Only fixtures, mass and velocity are effected, Other properties are ignored.
@@ -2740,7 +2740,7 @@ declare module Box2D.Dynamics {
 		* Set the active state of the body. An inactive body is not simulated and cannot be collided with or woken up. If you pass a flag of true, all fixtures will be added to the broad-phase. If you pass a flag of false, all fixtures will be removed from the broad-phase and all contacts will be destroyed. Fixtures and joints are otherwise unaffected. You may continue to create/destroy fixtures and joints on inactive bodies. Fixtures on an inactive body are implicitly inactive and will not participate in collisions, ray-casts, or queries. Joints connected to an inactive body are implicitly inactive. An inactive body is still owned by a b2World object and remains in the body list.
 		* @flag True to activate, false to deactivate.
 		**/
-		public SetActive(flag: bool): void;
+		public SetActive(flag: boolean): void;
 
 		/**
 		* Set the world body angle
@@ -2764,19 +2764,19 @@ declare module Box2D.Dynamics {
 		* Set the sleep state of the body. A sleeping body has vety low CPU cost.
 		* @flag True to set the body to awake, false to put it to sleep.
 		**/
-		public SetAwake(flag: bool): void;
+		public SetAwake(flag: boolean): void;
 
 		/**
 		* Should this body be treated like a bullet for continuous collision detection?
 		* @flag True for bullet, false for normal.
 		**/
-		public SetBullet(flag: bool): void;
+		public SetBullet(flag: boolean): void;
 
 		/**
 		* Set this body to have fixed rotation. This causes the mass to be reset.
 		* @fixed True for no rotation, false to allow for rotation.
 		**/
-		public SetFixedRotation(fixed: bool): void;
+		public SetFixedRotation(fixed: boolean): void;
 
 		/**
 		* Set the linear damping of the body.
@@ -2814,7 +2814,7 @@ declare module Box2D.Dynamics {
 		* Is this body allowed to sleep
 		* @flag True if the body can sleep, false if not.
 		**/
-		public SetSleepingAllowed(flag: bool): void;
+		public SetSleepingAllowed(flag: boolean): void;
 
 		/**
 		* Set the position of the body's origin and rotation (radians). This breaks any contacts and wakes the other bodies. Note this is less efficient than the other overload - you should use that if the angle is available.
@@ -2839,7 +2839,7 @@ declare module Box2D.Dynamics {
 		* @note This provides a feature specific to this port.
 		* @return The newly created bodies from the split.
 		**/
-		public Split(callback: (fixture: b2Fixture) => bool): b2Body;
+		public Split(callback: (fixture: b2Fixture) => boolean): b2Body;
 	}
 
 	/**
@@ -2850,12 +2850,12 @@ declare module Box2D.Dynamics {
 		/**
 		* Does this body start out active?
 		**/
-		public active: bool;
+		public active: boolean;
 
 		/**
 		* Set this flag to false if this body should never fall asleep. Note that this increases CPU usage.
 		**/
-		public allowSleep: bool;
+		public allowSleep: boolean;
 
 		/**
 		* The world angle of the body in radians.
@@ -2875,18 +2875,18 @@ declare module Box2D.Dynamics {
 		/**
 		* Is this body initially awake or sleeping?
 		**/
-		public awake: bool;
+		public awake: boolean;
 
 		/**
 		* Is this a fast moving body that should be prevented from tunneling through other moving bodies? Note that all bodies are prevented from tunneling through static bodies.
 		* @warning You should use this flag sparingly since it increases processing time.
 		**/
-		public bullet: bool;
+		public bullet: boolean;
 
 		/**
 		* Should this body be prevented from rotating? Useful for characters.
 		**/
-		public fixedRotation: bool;
+		public fixedRotation: boolean;
 
 		/**
 		* Scales the inertia tensor.
@@ -2934,7 +2934,7 @@ declare module Box2D.Dynamics {
 		* @userData User provided data.  Comments indicate that this might be a b2Fixture.
 		* @return True if the fixture should be considered for ray intersection, otherwise false.
 		**/
-		public RayCollide(userData: any): bool;
+		public RayCollide(userData: any): boolean;
 
 		/**
 		* Return true if contact calculations should be performed between these two fixtures.
@@ -2943,7 +2943,7 @@ declare module Box2D.Dynamics {
 		* @fixtureB b2Fixture potentially colliding with fixtureA.
 		* @return True if fixtureA and fixtureB probably collide requiring more calculations, otherwise false.
 		**/
-		public ShouldCollide(fixtureA: b2Fixture, fixtureB: b2Fixture): bool;
+		public ShouldCollide(fixtureA: b2Fixture, fixtureB: b2Fixture): boolean;
 	}
 
 	/**
@@ -3307,7 +3307,7 @@ declare module Box2D.Dynamics {
 		* Is this fixture a sensor (non-solid)?
 		* @return True if the shape is a sensor, otherwise false.
 		**/
-		public IsSensor(): bool;
+		public IsSensor(): boolean;
 
 		/**
 		* Perform a ray cast against this shape.
@@ -3315,7 +3315,7 @@ declare module Box2D.Dynamics {
 		* @input Ray cast input parameters.
 		* @return True if the ray hits the shape, otherwise false.
 		**/
-		public RayCast(output: b2Collision.b2RayCastOutput, input: b2Collision.b2RayCastInput): bool;
+		public RayCast(output: b2Collision.b2RayCastOutput, input: b2Collision.b2RayCastInput): boolean;
 
 		/**
 		* Set the density of this fixture. This will _not_ automatically adjust the mass of the body. You must call b2Body::ResetMassData to update the body's mass.
@@ -3345,7 +3345,7 @@ declare module Box2D.Dynamics {
 		* Set if this fixture is a sensor.
 		* @sensor True to set as a sensor, false to not be a sensor.
 		**/
-		public SetSensor(sensor: bool): void;
+		public SetSensor(sensor: boolean): void;
 
 		/**
 		* Set the user data. Use this to store your application specific data.
@@ -3358,7 +3358,7 @@ declare module Box2D.Dynamics {
 		* @p Point to test against, in world coordinates.
 		* @return True if the point is in this shape, otherwise false.
 		**/
-		public TestPoint(p: b2Math.b2Vec2): bool;
+		public TestPoint(p: b2Math.b2Vec2): boolean;
 
 		//tsuge add
 		public Destroy(): void;
@@ -3387,7 +3387,7 @@ declare module Box2D.Dynamics {
 		/**
 		* A sensor shape collects contact information but never generates a collision response.
 		**/
-		public isSensor: bool;
+		public isSensor: boolean;
 
 		/**
 		* The restitution (elasticity) usually in the range [0,1].
@@ -3430,7 +3430,7 @@ declare module Box2D.Dynamics {
 		* @gravity The world gravity vector.
 		* @doSleep Improvie performance by not simulating inactive bodies.
 		**/
-		constructor(gravity: b2Math.b2Vec2, doSleep: bool);
+		constructor(gravity: b2Math.b2Vec2, doSleep: boolean);
 
 		/**
 		* Add a controller to the world list.
@@ -3549,14 +3549,14 @@ declare module Box2D.Dynamics {
 		* Is the world locked (in the middle of a time step).
 		* @return True if the world is locked and in the middle of a time step, otherwise false.
 		**/
-		public IsLocked(): bool;
+		public IsLocked(): boolean;
 
 		/**
 		* Query the world for all fixtures that potentially overlap the provided AABB.
 		* @callback  A user implemented callback class. It should match signature function Callback(fixture:b2Fixture):Boolean.  Return true to continue to the next fixture.
 		* @aabb The query bounding box.
 		**/
-		public QueryAABB(callback: (fixutre: b2Fixture) => bool, aabb: b2Collision.b2AABB): void;
+		public QueryAABB(callback: (fixutre: b2Fixture) => boolean, aabb: b2Collision.b2AABB): void;
 
 		/**
 		* Query the world for all fixtures that contain a point.
@@ -3564,7 +3564,7 @@ declare module Box2D.Dynamics {
 		* @callback A user implemented callback class.  It should match signature function Callback(fixture:b2Fixture):Boolean.  Return true to continue to the next fixture.
 		* @p The query point.
 		**/
-		public QueryPoint(callback: (fixture: b2Fixture) => bool, p: b2Math.b2Vec2): void;
+		public QueryPoint(callback: (fixture: b2Fixture) => boolean, p: b2Math.b2Vec2): void;
 
 		/**
 		* Query the world for all fixtures that precisely overlap the provided transformed shape.
@@ -3573,7 +3573,7 @@ declare module Box2D.Dynamics {
 		* @shape The query shape.
 		* @transform Optional transform, default = null.
 		**/
-		public QueryShape(callback: (fixture: b2Fixture) => bool, shape: b2Shapes.b2Shape, transform?: b2Math.b2Transform): void;
+		public QueryShape(callback: (fixture: b2Fixture) => boolean, shape: b2Shapes.b2Shape, transform?: b2Math.b2Transform): void;
 
 		/**
 		* Ray-cast the world for all fixtures in the path of the ray. Your callback Controls whether you get the closest point, any point, or n-points The ray-cast ignores shapes that contain the starting point.
@@ -3635,7 +3635,7 @@ declare module Box2D.Dynamics {
 		* Enable/disable continuous physics. For testing.
 		* @flag True for continuous physics, otherwise false.
 		**/
-		public SetContinuousPhysics(flag: bool): void;
+		public SetContinuousPhysics(flag: boolean): void;
 
 		/**
 		* Register a routine for debug drawing. The debug draw functions are called inside the b2World::Step method, so make sure your renderer is ready to consume draw commands when you call Step().
@@ -3659,7 +3659,7 @@ declare module Box2D.Dynamics {
 		* Enable/disable warm starting. For testing.
 		* @flag True for warm starting, otherwise false.
 		**/
-		public SetWarmStarting(flag: bool): void;
+		public SetWarmStarting(flag: boolean): void;
 
 		/**
 		* Take a time step. This performs collision detection, integration, and constraint solution.
@@ -3727,37 +3727,37 @@ declare module Box2D.Dynamics.Contacts {
 		* Does this contact generate TOI events for continuous simulation.
 		* @return True for continous, otherwise false.
 		**/
-		public IsContinuous(): bool;
+		public IsContinuous(): boolean;
 		
 		/**
 		* Has this contact been disabled?
 		* @return True if disabled, otherwise false.
 		**/
-		public IsEnabled(): bool;
+		public IsEnabled(): boolean;
 		
 		/**
 		* Is this contact a sensor?
 		* @return True if sensor, otherwise false.
 		**/
-		public IsSensor(): bool;
+		public IsSensor(): boolean;
 		
 		/**
 		* Is this contact touching.
 		* @return True if contact is touching, otherwise false.
 		**/
-		public IsTouching(): bool;
+		public IsTouching(): boolean;
 		
 		/**
 		* Enable/disable this contact. This can be used inside the pre-solve contact listener. The contact is only disabled for the current time step (or sub-step in continuous collision).
 		* @flag True to enable, false to disable.
 		**/
-		public SetEnabled(flag: bool): void;
+		public SetEnabled(flag: boolean): void;
 
 		/**
 		* Change this to be a sensor or-non-sensor contact.
 		* @sensor True to be sensor, false to not be a sensor.
 		**/
-		public SetSensor(sensor: bool): void;
+		public SetSensor(sensor: boolean): void;
 	}
 
 	/**
@@ -3877,13 +3877,13 @@ declare module Box2D.Dynamics.Controllers {
 		* If false, bodies are assumed to be uniformly dense, otherwise use the shapes densities.
 		* @default = false.
 		**/
-		public useDensity: bool;
+		public useDensity: boolean;
 
 		/**
 		* If true, gravity is taken from the world instead of the gravity parameter.
 		* @default = true.
 		**/
-		public useWorldGravity: bool;
+		public useWorldGravity: boolean;
 
 		/**
 		* Fluid velocity, for drag calculations.
@@ -4038,7 +4038,7 @@ declare module Box2D.Dynamics.Controllers {
 		/**
 		* If true, gravity is proportional to r^-2, otherwise r^-1.
 		**/
-		public invSqr: bool;
+		public invSqr: boolean;
 
 		/**
 		* Step.
@@ -4432,7 +4432,7 @@ declare module Box2D.Dynamics.Joints {
 		* Short-cut function to determine if either body is inactive.
 		* @return True if active, otherwise false.
 		**/
-		public IsActive(): bool;
+		public IsActive(): boolean;
 
 		/**
 		* Set the user data pointer.
@@ -4459,7 +4459,7 @@ declare module Box2D.Dynamics.Joints {
 		/**
 		* Set this flag to true if the attached bodies should collide.
 		**/
-		public collideConnected: bool;
+		public collideConnected: boolean;
 
 		/**
 		* The joint type is set automatically for concrete joint types.
@@ -4512,13 +4512,13 @@ declare module Box2D.Dynamics.Joints {
 		* Enable/disable the joint limit.
 		* @flag True to enable, false to disable limits
 		**/
-		public EnableLimit(flag: bool): void;
+		public EnableLimit(flag: boolean): void;
 
 		/**
 		* Enable/disable the joint motor.
 		* @flag True to enable, false to disable the motor.
 		**/
-		public EnableMotor(flag: bool): void;
+		public EnableMotor(flag: boolean): void;
 
 		/**
 		* Get the anchor point on bodyA in world coordinates.
@@ -4591,13 +4591,13 @@ declare module Box2D.Dynamics.Joints {
 		* Is the joint limit enabled?
 		* @return True if enabled otherwise false.
 		**/
-		public IsLimitEnabled(): bool;
+		public IsLimitEnabled(): boolean;
 
 		/**
 		* Is the joint motor enabled?
 		* @return True if enabled, otherwise false.
 		**/
-		public IsMotorEnabled(): bool;
+		public IsMotorEnabled(): boolean;
 
 		/**
 		* Set the joint limits, usually in meters.
@@ -4627,12 +4627,12 @@ declare module Box2D.Dynamics.Joints {
 		/**
 		* Enable/disable the joint limit.
 		**/
-		public enableLimit: bool;
+		public enableLimit: boolean;
 
 		/**
 		* Enable/disable the joint motor.
 		**/
-		public enableMotor: bool;
+		public enableMotor: boolean;
 
 		/**
 		* The local anchor point relative to body1's origin.
@@ -4798,13 +4798,13 @@ declare module Box2D.Dynamics.Joints {
 		* Enable/disable the joint limit.
 		* @flag True to enable, false to disable.
 		**/
-		public EnableLimit(flag: bool): void;
+		public EnableLimit(flag: boolean): void;
 
 		/**
 		* Enable/disable the joint motor.
 		* @flag True to enable, false to disable.
 		**/
-		public EnableMotor(flag: bool): void;
+		public EnableMotor(flag: boolean): void;
 
 		/**
 		* Get the anchor point on bodyA in world coordinates.
@@ -4871,13 +4871,13 @@ declare module Box2D.Dynamics.Joints {
 		* Is the joint limit enabled?
 		* @return True if enabled otherwise false.
 		**/
-		public IsLimitEnabled(): bool;
+		public IsLimitEnabled(): boolean;
 
 		/**
 		* Is the joint motor enabled?
 		* @return True if enabled, otherwise false.
 		**/
-		public IsMotorEnabled(): bool;
+		public IsMotorEnabled(): boolean;
 
 		/**
 		* Set the joint limits, usually in meters.
@@ -4907,12 +4907,12 @@ declare module Box2D.Dynamics.Joints {
 		/**
 		* Enable/disable the joint limit.
 		**/
-		public enableLimit: bool;
+		public enableLimit: boolean;
 
 		/**
 		* Enable/disable the joint motor.
 		**/
-		public enableMotor: bool;
+		public enableMotor: boolean;
 
 		/**
 		* The local anchor point relative to body1's origin.
@@ -5101,13 +5101,13 @@ declare module Box2D.Dynamics.Joints {
 		* Enable/disable the joint limit.
 		* @flag True to enable, false to disable.
 		**/
-		public EnableLimit(flag: bool): void;
+		public EnableLimit(flag: boolean): void;
 
 		/**
 		* Enable/disable the joint motor.
 		* @flag True to enable, false to diasable.
 		**/
-		public EnableMotor(flag: bool): void;
+		public EnableMotor(flag: boolean): void;
 
 		/**
 		* Get the anchor point on bodyA in world coordinates.
@@ -5174,13 +5174,13 @@ declare module Box2D.Dynamics.Joints {
 		* Is the joint limit enabled?
 		* @return True if enabled, false if disabled.
 		**/
-		public IsLimitEnabled(): bool;
+		public IsLimitEnabled(): boolean;
 
 		/**
 		* Is the joint motor enabled?
 		* @return True if enabled, false if disabled.
 		**/
-		public IsMotorEnabled(): bool;
+		public IsMotorEnabled(): boolean;
 
 		/**
 		* Set the joint limits in radians.
@@ -5210,12 +5210,12 @@ declare module Box2D.Dynamics.Joints {
 		/**
 		* A flag to enable joint limits.
 		**/
-		public enableLimit: bool;
+		public enableLimit: boolean;
 
 		/**
 		* A flag to enable the joint motor.
 		**/
-		public enableMotor: bool;
+		public enableMotor: boolean;
 
 		/**
 		* The local anchor point relative to body1's origin.

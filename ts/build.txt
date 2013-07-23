@@ -3,3 +3,5 @@ box2dweb-min.d.ts
 box2d.ts
 --out ../box2d.js
 --declaration
+--disallowbool
+--disallowimportmodule
